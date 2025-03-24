@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/helpers/helper_functions.dart';
 import '../containers/circular_container.dart';
+import '../containers/rounded_container.dart';
 
 /// A customized choice chip that can act like a radio button.
 class TChoiceChip extends StatelessWidget {
@@ -31,7 +32,7 @@ class TChoiceChip extends StatelessWidget {
       child: ChoiceChip(
         // Use this function to get Colors as a Chip
         avatar: THelperFunctions.getColor(text) != null
-            ? TCircularContainer(width: 50, height: 50, backgroundColor: THelperFunctions.getColor(text)!)
+            ? TRoundedContainer(width: 50, height: 50, backgroundColor: THelperFunctions.getColor(text)!)
             : null,
         selected: selected,
         onSelected: onSelected,

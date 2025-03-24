@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/common/widgets/containers/circular_container.dart';
+import 'package:ecommerce_admin_panel/common/widgets/layouts/templates/site_layout.dart';
 import 'package:ecommerce_admin_panel/common/widgets/responsive/responsive_design.dart';
 import 'package:ecommerce_admin_panel/routes/app_routes.dart';
 import 'package:ecommerce_admin_panel/routes/routes.dart';
@@ -8,6 +9,8 @@ import 'package:ecommerce_admin_panel/utils/device/web_material_scroll.dart';
 import 'package:ecommerce_admin_panel/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'common/widgets/containers/rounded_container.dart';
 
 class AppRoute extends StatelessWidget {
   const AppRoute({super.key});
@@ -40,13 +43,11 @@ class ResponsiveDesignScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-            padding: EdgeInsets.all(30),
-            child: TResponsiveDesign(
-                desktop: Desktop(), tablet: Tablet(), mobile: Mobile())),
-      ),
+    return const TSiteTemplate(
+      // useLayout: false,
+      desktop: Desktop(),
+      tablet: Tablet(),
+      mobile: Mobile(),
     );
   }
 }
@@ -59,7 +60,6 @@ class Desktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         /// First Row
         Row(
@@ -68,8 +68,8 @@ class Desktop extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  TCircularContainer(
-                    height: 450,
+                  TRoundedContainer(
+                    height: 420,
                     backgroundColor: Colors.pink.withOpacity(0.2),
                     child: const Center(
                         child: Text(
@@ -87,8 +87,8 @@ class Desktop extends StatelessWidget {
               flex: 2,
               child: Column(
                 children: [
-                  TCircularContainer(
-                    height: 215,
+                  TRoundedContainer(
+                    height: 200,
                     backgroundColor: Colors.blue.withOpacity(0.2),
                     child: const Center(
                         child: Text(
@@ -103,8 +103,7 @@ class Desktop extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Expanded(
-                        child: TCircularContainer(
-                          width: 250,
+                        child: TRoundedContainer(
                           height: 200,
                           backgroundColor: Colors.yellow.withOpacity(0.2),
                           child: const Center(
@@ -118,8 +117,7 @@ class Desktop extends StatelessWidget {
                         width: 20,
                       ),
                       Expanded(
-                        child: TCircularContainer(
-                          width: 250,
+                        child: TRoundedContainer(
                           height: 200,
                           backgroundColor: Colors.deepPurple.withOpacity(0.2),
                           child: const Center(
@@ -137,40 +135,39 @@ class Desktop extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
 
         /// Second Row
         Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Expanded(
               flex: 2,
-              child: TCircularContainer(
-                width: 300,
-                height: 200,
-                backgroundColor: Colors.green.withOpacity(0.2),
-                child: const Center(
-                    child: Text(
-                  'BOX 5',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                )),
-              ),
-            ),
+              child :TRoundedContainer(
+              height: 150,
+              backgroundColor: Colors.green.withOpacity(0.2),
+              child: const Center(
+                  child: Text(
+                    'BOX 5',
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                  )),
+            ), ),
+
             const SizedBox(
               width: 20,
             ),
             Expanded(
-              child: TCircularContainer(
-                width: 500,
-                height: 200,
-                backgroundColor: Colors.red.withOpacity(0.2),
-                child: const Center(
-                    child: Text(
-                  'BOX 6',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                )),
-              ),
-            )
+                child:TRoundedContainer(
+              height: 150,
+              backgroundColor: Colors.red.withOpacity(0.2),
+              child: const Center(
+                  child: Text(
+                    'BOX 6',
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                  )),
+            ) )
+
           ],
         )
       ],
@@ -185,119 +182,121 @@ class Tablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        /// First Row
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  TCircularContainer(
-                    height: 450,
-                    backgroundColor: Colors.pink.withOpacity(0.2),
-                    child: const Center(
-                        child: Text(
-                      'BOX 1',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
-                    )),
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// First Row
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    TRoundedContainer(
+                      height: 450,
+                      backgroundColor: Colors.pink.withOpacity(0.2),
+                      child: const Center(
+                          child: Text(
+                        'BOX 1',
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      )),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              flex: 2,
-              child: Column(
-                children: [
-                  TCircularContainer(
-                    height: 215,
-                    backgroundColor: Colors.blue.withOpacity(0.2),
-                    child: const Center(
-                        child: Text(
-                      'BOX 2',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
-                    )),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Expanded(
-                        child: TCircularContainer(
-                          width: 250,
-                          height: 200,
-                          backgroundColor: Colors.yellow.withOpacity(0.2),
-                          child: const Center(
-                              child: Text(
-                            'BOX 3',
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          )),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: TCircularContainer(
-                          width: 250,
-                          height: 200,
-                          backgroundColor: Colors.deepPurple.withOpacity(0.2),
-                          child: const Center(
-                              child: Text(
-                            'BOX 4',
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          )),
-                        ),
-                      )
-                    ],
-                  ),
-                ],
+              const SizedBox(
+                width: 20,
               ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-
-        /// Second Row
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TCircularContainer(
-              height: 190,
-              width: double.infinity,
-              backgroundColor: Colors.green.withOpacity(0.2),
-              child: const Center(
-                  child: Text(
-                'BOX 5',
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              )),
-            ),
-            const SizedBox(
-              width: 20,
-              height: 20,
-            ),
-            TCircularContainer(
-              width: double.infinity,
-              height: 190,
-              backgroundColor: Colors.red.withOpacity(0.2),
-              child: const Center(
-                  child: Text(
-                'BOX 6',
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              )),
-            )
-          ],
-        )
-      ],
+              Expanded(
+                flex: 2,
+                child: Column(
+                  children: [
+                    TRoundedContainer(
+                      height: 215,
+                      backgroundColor: Colors.blue.withOpacity(0.2),
+                      child: const Center(
+                          child: Text(
+                        'BOX 2',
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      )),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: TRoundedContainer(
+                            width: 250,
+                            height: 200,
+                            backgroundColor: Colors.yellow.withOpacity(0.2),
+                            child: const Center(
+                                child: Text(
+                              'BOX 3',
+                              style: TextStyle(fontSize: 18, color: Colors.black),
+                            )),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: TRoundedContainer(
+                            width: 250,
+                            height: 200,
+                            backgroundColor: Colors.deepPurple.withOpacity(0.2),
+                            child: const Center(
+                                child: Text(
+                              'BOX 4',
+                              style: TextStyle(fontSize: 18, color: Colors.black),
+                            )),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+      
+          /// Second Row
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TRoundedContainer(
+                height: 190,
+                width: double.infinity,
+                backgroundColor: Colors.green.withOpacity(0.2),
+                child: const Center(
+                    child: Text(
+                  'BOX 5',
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                )),
+              ),
+              const SizedBox(
+                width: 20,
+                height: 20,
+              ),
+              TRoundedContainer(
+                width: double.infinity,
+                height: 190,
+                backgroundColor: Colors.red.withOpacity(0.2),
+                child: const Center(
+                    child: Text(
+                  'BOX 6',
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                )),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }
@@ -309,85 +308,87 @@ class Mobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        /// First Row
-        TCircularContainer(
-          height: 450,
-          width: double.infinity,
-          backgroundColor: Colors.pink.withOpacity(0.2),
-          child: const Center(
-              child: Text(
-            'BOX 1',
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          )),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        TCircularContainer(
-          height: 215,
-          width: double.infinity,
-          backgroundColor: Colors.blue.withOpacity(0.2),
-          child: const Center(
-              child: Text(
-            'BOX 2',
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          )),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        TCircularContainer(
-          width: double.infinity,
-          height: 215,
-          backgroundColor: Colors.yellow.withOpacity(0.2),
-          child: const Center(
-              child: Text(
-            'BOX 3',
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          )),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        TCircularContainer(
-          width: double.infinity,
-          height: 215,
-          backgroundColor: Colors.deepPurple.withOpacity(0.2),
-          child: const Center(
-              child: Text(
-            'BOX 4',
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          )),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        TCircularContainer(
-          width: double.infinity,
-          height: 215,
-          backgroundColor: Colors.green.withOpacity(0.2),
-          child: const Center(
-              child: Text(
-            'BOX 5',
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          )),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        TCircularContainer(
-          width: double.infinity,
-          height: 215,
-          backgroundColor: Colors.red.withOpacity(0.2),
-          child: const Center(
-              child: Text(
-            'BOX 6',
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          )),
-        )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          /// First Row
+          TRoundedContainer(
+            height: 450,
+            width: double.infinity,
+            backgroundColor: Colors.pink.withOpacity(0.2),
+            child: const Center(
+                child: Text(
+              'BOX 1',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            )),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          TRoundedContainer(
+            height: 215,
+            width: double.infinity,
+            backgroundColor: Colors.blue.withOpacity(0.2),
+            child: const Center(
+                child: Text(
+              'BOX 2',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            )),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          TRoundedContainer(
+            width: double.infinity,
+            height: 215,
+            backgroundColor: Colors.yellow.withOpacity(0.2),
+            child: const Center(
+                child: Text(
+              'BOX 3',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            )),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          TRoundedContainer(
+            width: double.infinity,
+            height: 215,
+            backgroundColor: Colors.deepPurple.withOpacity(0.2),
+            child: const Center(
+                child: Text(
+              'BOX 4',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            )),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          TRoundedContainer(
+            width: double.infinity,
+            height: 215,
+            backgroundColor: Colors.green.withOpacity(0.2),
+            child: const Center(
+                child: Text(
+              'BOX 5',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            )),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          TRoundedContainer(
+            width: double.infinity,
+            height: 215,
+            backgroundColor: Colors.red.withOpacity(0.2),
+            child: const Center(
+                child: Text(
+              'BOX 6',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            )),
+          )
+        ],
+      ),
     );
   }
 }

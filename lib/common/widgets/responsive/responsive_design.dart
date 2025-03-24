@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../app_route.dart';
 
 /// Widget for displaying different layouts based on screen size
-class TResponsiveDesign extends StatelessWidget {
-  const TResponsiveDesign({super.key, required this.desktop, required this.tablet, required this.mobile});
+class TResponsiveWidget extends StatelessWidget {
+  const TResponsiveWidget({super.key, required this.desktop, required this.tablet, required this.mobile});
 
   /// Widget for desktop layout
   final Widget desktop;
@@ -18,7 +18,8 @@ class TResponsiveDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (_ , constraints){
+    return LayoutBuilder(
+        builder: (_ , constraints){
       if(constraints.maxWidth >= TSizes.desktopScreenSize){
         return desktop;
       } else if (constraints.maxWidth < TSizes.desktopScreenSize && constraints.maxWidth >= TSizes.tabletScreenSize ) {
