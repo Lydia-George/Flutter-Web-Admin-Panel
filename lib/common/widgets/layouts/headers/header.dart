@@ -82,7 +82,7 @@ class THeader extends StatelessWidget implements PreferredSizeWidget {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 Text(
-                  'lydiageorge42"gmail.com',
+                  'lydiageorge42@gmail.com',
                   style: Theme.of(context).textTheme.labelMedium,
                 )
               ],

@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/common/widgets/layouts/headers/header.dart';
+import 'package:ecommerce_admin_panel/common/widgets/layouts/sidebars/sidebar.dart';
 import 'package:flutter/material.dart';
 
 import '../../containers/circular_container.dart';
@@ -13,7 +14,7 @@ class TabletLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      drawer: const Drawer(),
+      drawer: const TSidebar(),
       appBar: THeader(scaffoldKey: scaffoldKey,),
       body: Expanded(child:body ?? const SizedBox(), )
     );
