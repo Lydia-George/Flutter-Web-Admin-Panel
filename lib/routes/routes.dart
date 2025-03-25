@@ -1,14 +1,13 @@
 class TRoutes{
-  static const firstScreen = '/';
-  static const secondScreen = '/second-screen/';
-  static const secondScreenWithUID = '/second-screen/:userId';
-  static const responsiveDesignScreen = '/responsive-design-screen';
+  // we define the strings that we want to display it in URL &
+  // and using this strings whenever we will be redirected from one screen to another , using Get.toNamed
+  static const login = '/login';
+  static const forgetPassword = '/forget-password';
+  static const resetPassword = '/reset-password';
+
 
   static List sideMenuItems =[
-    firstScreen,
-    secondScreen,
-    secondScreenWithUID,
-    responsiveDesignScreen,
+
   ];
 
 }

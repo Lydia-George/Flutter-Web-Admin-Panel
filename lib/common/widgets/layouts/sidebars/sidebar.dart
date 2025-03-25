@@ -46,9 +46,9 @@ class TSidebar extends StatelessWidget {
                     ),
 
                     /// Menu Items
-                      const TMenuItem(route: TRoutes.firstScreen, icon: Iconsax.status, itemName: 'Dashboard',),
-                     const TMenuItem(route: TRoutes.secondScreen, icon: Icons.image, itemName: 'Media',),
-                    const TMenuItem(route: TRoutes.responsiveDesignScreen, icon: Iconsax.picture_frame, itemName: 'Banners',),
+                    //   const TMenuItem(route: TRoutes.firstScreen, icon: Iconsax.status, itemName: 'Dashboard',),
+                    //  const TMenuItem(route: TRoutes.secondScreen, icon: Icons.image, itemName: 'Media',),
+                    // const TMenuItem(route: TRoutes.responsiveDesignScreen, icon: Iconsax.picture_frame, itemName: 'Banners',),
 
                   ],
                 ),

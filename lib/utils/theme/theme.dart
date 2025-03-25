@@ -18,7 +18,7 @@ class TAppTheme {
     fontFamily: 'Urbanist',
     disabledColor: TColors.grey,
     brightness: Brightness.light,
-    primaryColor: TColors.primary,
+    primaryColor: TColors.primaryColor,
     textTheme: TTextTheme.lightTextTheme,
     chipTheme: TChipTheme.lightChipTheme,
     appBarTheme: TAppBarTheme.lightAppBarTheme,

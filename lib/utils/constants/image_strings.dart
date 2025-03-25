@@ -10,6 +10,8 @@ class TImages {
   static const String appLogo = 'assets/logos/LadyHand Logo.png';
   static const String ladyHandLight = 'assets/logos/LadyHandLight.png';
   static const String ladyHandDark = 'assets/logos/LadyHandDark.png';
+  static const String ladyHandDarkWithoutBG = 'assets/logos/LadyHandDark_transparent.png';
+  static const String ladyHandLightWithoutBG = 'assets/logos/LadyHandLight_transparent.png';
 
   // -- Default Images
   static const String defaultImage = "assets/images/content/default_image.png";
