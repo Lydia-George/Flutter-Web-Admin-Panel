@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/colors.dart';
@@ -21,8 +22,7 @@ class TLoginTemplate extends StatelessWidget {
         padding: TSpacingStyle.paddingWithAppBarHeight,
         decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
-    color: TColors.white,
-
+          color: TColors.white,
     ),
        child: child,
         )
