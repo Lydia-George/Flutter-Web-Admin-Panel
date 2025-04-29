@@ -7,7 +7,7 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TSiteTemplate(
+    return const TSiteTemplate(
       useLayout: false,
       desktop: ForgetPasswordScreenDesktopTablet(),
       mobile: ForgetPasswordScreenMobile(),
