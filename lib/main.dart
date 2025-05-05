@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'app_route.dart';
+import 'data/repositories/authentication/authentication_repository.dart';
 
 /// Entry Point of Flutter App
 Future<void> main() async {
@@ -18,8 +19,8 @@ Future<void> main() async {
   setPathUrlStrategy();
 
   // Initialize Firebase & Authentication Repository
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    //  .then((_) => Get.put(AuthenticationRepository()));
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((_) => Get.put(AuthenticationRepository()));
 
   // Main App Starts here...
   runApp(const AppRoute());
