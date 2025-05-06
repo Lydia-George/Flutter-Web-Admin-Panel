@@ -1,13 +1,14 @@
 import 'package:ecommerce_admin_panel/app_route.dart';
-import 'package:ecommerce_admin_panel/features.authentication/screens/forget_password/forget_password.dart';
-import 'package:ecommerce_admin_panel/features.authentication/screens/reset_password/reset_password.dart';
 import 'package:ecommerce_admin_panel/routes/routes.dart';
 import 'package:ecommerce_admin_panel/routes/routes_middleware.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../features.authentication/screens/dashboard/dashboard.dart';
-import '../features.authentication/screens/login/login.dart';
+import '../features/screens/dashboard/dashboard.dart';
+import '../features/screens/forget_password/forget_password.dart';
+import '../features/screens/login/login.dart';
+import '../features/screens/reset_password/reset_password.dart';
+
 
 
 class TAppRoute {
