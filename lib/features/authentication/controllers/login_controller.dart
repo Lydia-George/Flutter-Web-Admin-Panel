@@ -1,10 +1,20 @@
-
+import 'package:ecommerce_admin_panel/data/repositories/authentication/authentication_repository.dart';
+import 'package:ecommerce_admin_panel/data/repositories/user/user_repository.dart';
+import 'package:ecommerce_admin_panel/features/authentication/controllers/user_controller.dart';
+import 'package:ecommerce_admin_panel/features/models/user_model.dart';
+import 'package:ecommerce_admin_panel/utils/constants/enums.dart';
+import 'package:ecommerce_admin_panel/utils/constants/text_strings.dart';
+import 'package:ecommerce_admin_panel/utils/helpers/network_manager.dart';
+import 'package:ecommerce_admin_panel/utils/popups/full_screen_loader.dart';
+import 'package:ecommerce_admin_panel/utils/popups/loaders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../utils/constants/image_strings.dart';
+
 /// Controller for handling login logic & functionality
-class LoginController extends GetxController{
+class LoginController extends GetxController {
   static LoginController get instance => Get.find();
 
   final hidePassword = true.obs;
@@ -15,12 +25,106 @@ class LoginController extends GetxController{
   final password = TextEditingController();
   final loginFormKey = GlobalKey<FormState>();
 
-  /// Handles email and password sign-in process
-  Future<void> emailAndPasswordSignIn() async{
+
+  @override
+  void onInit() {
+    email.text = localStorage.read('REMEMBER_ME_EMAIL') ?? '';
+    password.text = localStorage.read('REMEMBER_ME_PASSWORD') ?? '';
+    super.onInit();
+
 
   }
 
- /// Handles registration of admin user
+  /// Handles email and password sign-in process
+  Future<void> emailAndPasswordSignIn() async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog(
+          'Logging you in...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Form Validation
+      if (!loginFormKey.currentState!.validate()) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Save Data if Remember Me is selected
+      if (rememberMe.value) {
+        localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
+        localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
+      }
+
+      // Login user using Email & Password Authentication
+      await AuthenticationRepository.instance
+          .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
+
+      // Fetch user details and assign to UserController
+      final user = await UserController.instance.fetchUserDetails();
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // If user is mot admin , logout and return
+      if(user.role != AppRole.admin){
+        await AuthenticationRepository.instance.logout();
+        TLoaders.errorSnackBar(title: 'Not Authorized' , message: 'You are not authorized or do have access. Contact Admin');
+      }else{
+        // Redirect
+        AuthenticationRepository.instance.screenRedirect();
+      }
+
+
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Oh Snap' , message: e.toString());
+    }
+  }
+
+  /// Handles registration of admin user
   // this method have to deal with the cloud functions or cloud calls that's why we using async and return type is a type of future void
-Future<void> registerAdmin() async{}
+  Future<void> registerAdmin() async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog(
+          'Registering Admin Account...', TImages.docerAnimation);
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Register user using email And password Authentication
+      await AuthenticationRepository.instance.registerWithEmailAndPassword(
+          TTexts.adminEmail, TTexts.adminPassword);
+
+      // Create admin record in the firestore
+      final userRepository = Get.put(UserRepository());
+      await userRepository.createUser(UserModel(
+        id: AuthenticationRepository.instance.authUser!.uid,
+        email: TTexts.adminEmail,
+        firstName: 'Lydia',
+        lastName: 'George',
+        role: AppRole.admin,
+        createdAt: DateTime.now(),
+      ));
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+      // Redirect
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+    }
+  }
 }

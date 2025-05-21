@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/bindings/general_bindings.dart';
 import 'package:ecommerce_admin_panel/common/widgets/containers/circular_container.dart';
 import 'package:ecommerce_admin_panel/common/widgets/layouts/templates/site_layout.dart';
 import 'package:ecommerce_admin_panel/common/widgets/responsive/responsive_design.dart';
@@ -23,6 +24,7 @@ class AppRoute extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       initialRoute: TRoutes.dashboard,
+      initialBinding: GeneralBindings(),
       unknownRoute: GetPage(
           name: '/page-not-found',
           page: () => const Scaffold(

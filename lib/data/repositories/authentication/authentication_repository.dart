@@ -28,6 +28,21 @@ class AuthenticationRepository extends GetxController {
     _auth.setPersistence(Persistence.LOCAL);
   }
 
+  // Function to determine the relevant screen and redirect accordingly
+  void screenRedirect() async{
+    final user = _auth.currentUser;
+
+    // If the user is logged in
+    if (user != null ){
+      // Navigate to the Home
+      Get.offAllNamed(TRoutes.dashboard);
+    } else{
+      // Navigate to the Login Screen
+      Get.offAllNamed(TRoutes.login);
+    }
+  }
+
+
 // LOGIN
   Future<UserCredential> loginWithEmailAndPassword(
       String email, String password) async {
@@ -75,6 +90,21 @@ class AuthenticationRepository extends GetxController {
 // RE AUTHENTICATE USER
 
 // LOGOUT USER
-
+Future<void> logout() async{
+  try{
+    await FirebaseAuth.instance.signOut();
+    Get.offAllNamed(TRoutes.login);
+  }on FirebaseAuthException catch(e){
+    throw TFirebaseAuthException(e.code).message;
+  }on TFirebaseException catch (e){
+    throw TFirebaseException(e.code).message;
+  }on FormatException catch(_){
+    throw const TFormatException();
+  }on PlatformException catch (e){
+    throw TPlatformException(e.code).message;
+  } catch (e) {
+    throw 'Something went wrong. Please try again';
+  }
+}
 // DELETE USER
 }
