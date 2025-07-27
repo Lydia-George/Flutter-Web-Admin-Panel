@@ -1,3 +1,5 @@
+import 'package:ecommerce_admin_panel/features/authentication/controllers/forget_password_controller.dart';
+import 'package:ecommerce_admin_panel/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -14,6 +16,7 @@ class HeaderAndForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ForgetPasswordController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,9 +51,13 @@ class HeaderAndForm extends StatelessWidget {
           height: TSizes.spaceBtwSections * 2,
         ),
 
-        /// Form
+        /// Text field
         Form(
+          key: controller.forgetPasswordFormKey,
+
             child: TextFormField(
+              controller: controller.email ,
+              validator: TValidator.validateEmail,
               decoration: const InputDecoration(
                 labelText: TTexts.email,
                 prefixIcon: Icon(Iconsax.direct_right),
@@ -70,8 +77,7 @@ class HeaderAndForm extends StatelessWidget {
                   color: Colors.transparent,
                 ),
               ),
-              onPressed: () => Get.toNamed(TRoutes.resetPassword,
-                  parameters: {'email': 'georgelydia42@gmail.com'}),
+              onPressed: () => controller.sendPasswordResetEmail(),
               child: const Text(TTexts.submit)),
         ),
         const SizedBox(height: TSizes.spaceBtwSections * 2),

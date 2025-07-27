@@ -3,7 +3,9 @@ import 'package:ecommerce_admin_panel/features/screens/reset_password/responsive
 import 'package:ecommerce_admin_panel/features/screens/reset_password/responsive_screens/reset_password_mobile.dart';
 import 'package:flutter/material.dart';
 class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({super.key});
+  const ResetPasswordScreen({super.key, required this.email});
+
+final String email;
 
   @override
   Widget build(BuildContext context) {

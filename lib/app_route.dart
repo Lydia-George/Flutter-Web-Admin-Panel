@@ -2,6 +2,7 @@ import 'package:ecommerce_admin_panel/bindings/general_bindings.dart';
 import 'package:ecommerce_admin_panel/common/widgets/containers/circular_container.dart';
 import 'package:ecommerce_admin_panel/common/widgets/layouts/templates/site_layout.dart';
 import 'package:ecommerce_admin_panel/common/widgets/responsive/responsive_design.dart';
+import 'package:ecommerce_admin_panel/features/screens/dashboard/responsive_screens/dashboard_desktop.dart';
 import 'package:ecommerce_admin_panel/routes/app_routes.dart';
 import 'package:ecommerce_admin_panel/routes/routes.dart';
 import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'common/widgets/containers/rounded_container.dart';
+import 'features/screens/dashboard/dashboard.dart';
 
 class AppRoute extends StatelessWidget {
   const AppRoute({super.key});
@@ -34,7 +36,7 @@ class AppRoute extends StatelessWidget {
               )),
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
-      //home: const FirstScreen(), // we can't use the default key ('/') along with home
+      home:  const DashboardScreen(), // we can't use the default key ('/') along with home
       getPages: TAppRoute.pages,
     );
   }

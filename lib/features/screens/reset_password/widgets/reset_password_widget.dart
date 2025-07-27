@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin_panel/features/authentication/controllers/forget_password_controller.dart';
 import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,15 +10,15 @@ import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
 class ResetPasswordWidget extends StatelessWidget {
   const ResetPasswordWidget({
-    super.key,
+    super.key, required this.email,
 
   });
 
+  final String email;
 
 
   @override
   Widget build(BuildContext context) {
-    final email = Get.parameters['email'] ?? '';
     return Column(
       children: [
         /// Header
@@ -81,14 +82,16 @@ class ResetPasswordWidget extends StatelessWidget {
                 color: Colors.transparent,
               )
             ),
-              onPressed: () => Get.offAllNamed(TRoutes.login), child: const Text(TTexts.done)),
+              onPressed: () => Get.offAllNamed(TRoutes.login),
+              child: const Text(TTexts.done)),
         ),
 
         const SizedBox(height: TSizes.spaceBtwItems,),
 
         SizedBox(
           width: double.infinity,
-          child: TextButton(onPressed: () {}, child: const Text(TTexts.resendEmail , style: TextStyle(color: TColors.primaryColor),)),
+          child: TextButton(onPressed: () => ForgetPasswordController.instance.resendPasswordResetEmail(email),
+              child: const Text(TTexts.resendEmail , style: TextStyle(color: TColors.primaryColor),)),
         )
       ],
     );

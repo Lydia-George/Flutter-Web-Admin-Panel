@@ -119,26 +119,26 @@ class TLoginForm extends StatelessWidget {
               /// Sign In Button
               SizedBox(
                 width: double.infinity,
-                // child: ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //       backgroundColor: TColors.primaryColor,
-                //       side: const BorderSide(color: Colors.transparent),
-                //     ),
-                //     onPressed: () => controller.emailAndPasswordSignIn(),
-                //     child: const Text(
-                //       TTexts.signIn,
-                //       style: TextStyle(color: TColors.white),
-                //     )),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: TColors.primaryColor,
                       side: const BorderSide(color: Colors.transparent),
                     ),
-                    onPressed: () => controller.registerAdmin(),
+                    onPressed: () => controller.emailAndPasswordSignIn(),
                     child: const Text(
                       TTexts.signIn,
                       style: TextStyle(color: TColors.white),
                     )),
+                // child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: TColors.primaryColor,
+                //       side: const BorderSide(color: Colors.transparent),
+                //     ),
+                //     onPressed: () => controller.registerAdmin(),
+                //     child: const Text(
+                //       TTexts.signIn,
+                //       style: TextStyle(color: TColors.white),
+                //     )),
               )
             ],
           ),

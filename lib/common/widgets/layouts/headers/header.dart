@@ -1,21 +1,25 @@
 import 'package:ecommerce_admin_panel/common/widgets/images/t_rounded_image.dart';
+import 'package:ecommerce_admin_panel/common/widgets/shimmers/shimmer.dart';
+import 'package:ecommerce_admin_panel/features/authentication/controllers/user_controller.dart';
 import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:ecommerce_admin_panel/utils/constants/enums.dart';
 import 'package:ecommerce_admin_panel/utils/constants/image_strings.dart';
 import 'package:ecommerce_admin_panel/utils/constants/sizes.dart';
 import 'package:ecommerce_admin_panel/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 /// Header Widget for the Application
 class THeader extends StatelessWidget implements PreferredSizeWidget {
-  const THeader({super.key,  this.scaffoldKey});
+  const THeader({super.key, this.scaffoldKey});
 
   /// GlobalKey to access the scaffold state
   final GlobalKey<ScaffoldState>? scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -55,14 +59,22 @@ class THeader extends StatelessWidget implements PreferredSizeWidget {
           IconButton(onPressed: () {}, icon: const Icon(Iconsax.notification)),
 
           // User Data
-          const Row(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TRoundedImage(
-                width: 40,
-                padding: 2,
-                height: 40,
-                imageType: ImageType.asset,
-                image: TImages.user,
+              // Image
+              Obx(
+                () => TRoundedImage(
+                  width: 40,
+                  padding: 2,
+                  height: 40,
+                  imageType: controller.user.value.profilePicture.isNotEmpty
+                      ? ImageType.network
+                      : ImageType.asset,
+                  image: controller.user.value.profilePicture.isNotEmpty
+                      ? controller.user.value.profilePicture
+                      : TImages.user,
+                ),
               ),
             ],
           ),
@@ -73,19 +85,25 @@ class THeader extends StatelessWidget implements PreferredSizeWidget {
 
           // Name and Email
           if (!TDeviceUtils.isMobileScreen(context))
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Lydia George',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(
-                  'lydiageorge42@gmail.com',
-                  style: Theme.of(context).textTheme.labelMedium,
-                )
-              ],
+            Obx(
+              () => Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  controller.loading.value
+                      ? const TShimmerEffect(width: 50, height: 13)
+                      : Text(
+                          controller.user.value.fullName,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                  controller.loading.value
+                      ? const TShimmerEffect(width: 50, height: 13)
+                      : Text(
+                          controller.user.value.email,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        )
+                ],
+              ),
             )
         ],
       ),

@@ -15,7 +15,7 @@ class TAppRoute {
 static final List<GetPage> pages = [
   GetPage(name: TRoutes.login, page: ()=> const LoginScreen()),
   GetPage(name: TRoutes.forgetPassword, page: () => const ForgetPasswordScreen()),
-  GetPage(name: TRoutes.resetPassword, page: () => const ResetPasswordScreen()),
+  GetPage(name: TRoutes.resetPassword, page: () => const ResetPasswordScreen(email: '',)),
   // before going to dashboard screen you have to go first to this middleware logic
   GetPage(name: TRoutes.dashboard, page: () => const DashboardScreen() , middlewares: [TRouteMiddleware()]),
 

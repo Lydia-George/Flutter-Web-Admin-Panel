@@ -8,8 +8,8 @@ class UserModel {
   final String? id;
   String firstName;
   String lastName;
-  final String username;
-  final String email;
+   String username;
+   String email;
   String phoneNumber;
   String profilePicture;
   AppRole role;

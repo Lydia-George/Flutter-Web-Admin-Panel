@@ -71,7 +71,7 @@ class LoginController extends GetxController {
       // Remove Loader
       TFullScreenLoader.stopLoading();
 
-      // If user is mot admin , logout and return
+      // If user is not admin , logout and return
       if(user.role != AppRole.admin){
         await AuthenticationRepository.instance.logout();
         TLoaders.errorSnackBar(title: 'Not Authorized' , message: 'You are not authorized or do have access. Contact Admin');
@@ -88,7 +88,7 @@ class LoginController extends GetxController {
   }
 
   /// Handles registration of admin user
-  // this method have to deal with the cloud functions or cloud calls that's why we using async and return type is a type of future void
+ // this method have to deal with the cloud functions or cloud calls that's why we using async and return type is a type of future void
   Future<void> registerAdmin() async {
     try {
       // Start Loading
@@ -108,7 +108,8 @@ class LoginController extends GetxController {
 
       // Create admin record in the firestore
       final userRepository = Get.put(UserRepository());
-      await userRepository.createUser(UserModel(
+      await userRepository.createUser(
+          UserModel(
         id: AuthenticationRepository.instance.authUser!.uid,
         email: TTexts.adminEmail,
         firstName: 'Lydia',
@@ -121,7 +122,7 @@ class LoginController extends GetxController {
       TFullScreenLoader.stopLoading();
 
       // Redirect
-      AuthenticationRepository.instance.screenRedirect();
+     AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());

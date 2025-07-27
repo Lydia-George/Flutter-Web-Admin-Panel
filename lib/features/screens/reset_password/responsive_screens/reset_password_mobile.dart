@@ -12,7 +12,7 @@ class ResetPasswordScreenMobile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
-          child: ResetPasswordWidget(),
+          child: ResetPasswordWidget(email: '',),
         ),
       ),
     );
