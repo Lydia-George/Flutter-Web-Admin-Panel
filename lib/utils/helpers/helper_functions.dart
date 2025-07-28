@@ -7,8 +7,8 @@ import '../constants/enums.dart';
 class THelperFunctions {
 
   static DateTime getStartOfWeek(DateTime date) {
-    final int daysUntilMonday = date.weekday - 1;
-    final DateTime startOfWeek = date.subtract(Duration(days: daysUntilMonday));
+    final int daysUntilSaturday = date.weekday - 1;
+    final DateTime startOfWeek = date.subtract(Duration(days: daysUntilSaturday));
     return DateTime(startOfWeek.year, startOfWeek.month, startOfWeek.day, 0, 0, 0, 0, 0);
   }
 
